@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>BankWebApp</display-name>
+
+	<servlet>
+		<display-name>searchClientProfileServlet</display-name>
+		<servlet-name>searchClientProfileServlet</servlet-name>
+		<servlet-class>pw.bdwsr.rozproszonaprojekt.webapp.SearchClientProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchClientProfileServlet</servlet-name>
+		<url-pattern>/searchClientProfileServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>addClientAccountServlet</display-name>
+		<servlet-name>addClientAccountServlet</servlet-name>
+		<servlet-class>pw.bdwsr.rozproszonaprojekt.webapp.AddClientAccountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addClientAccountServlet</servlet-name>
+		<url-pattern>/addClientAccountServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>accountOperationServlet</display-name>
+		<servlet-name>accountOperationServlet</servlet-name>
+		<servlet-class>pw.bdwsr.rozproszonaprojekt.webapp.AccountOperationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accountOperationServlet</servlet-name>
+		<url-pattern>/accountOperationServlet</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
