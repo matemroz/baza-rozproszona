@@ -28,6 +28,8 @@ public class SearchClientProfileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nrKonta = request.getParameter("nrKonta");
  
+		
+		
 		response.setContentType("text/html");
  
 		PrintWriter writer = response.getWriter();		
