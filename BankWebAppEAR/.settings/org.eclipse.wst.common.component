@@ -2,7 +2,8 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="BankWebAppEAR">
         <wb-resource deploy-path="/" source-path="/EarContent"/>
-        <dependent-module archiveName="BankWebApp.jar" deploy-path="/lib" handle="module:/resource/BankWebApp/BankWebApp">
+        <dependent-module archiveName="BankWebApp.war" deploy-path="/" handle="module:/resource/BankWebApp/BankWebApp">
+            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="BankDomain.jar" deploy-path="/lib" handle="module:/resource/BankDomain/BankDomain">
