@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
+import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
+
 /**
  * Servlet implementation class AccountOperationServlet
  */
@@ -31,8 +34,15 @@ public class AccountOperationServlet extends HttpServlet {
 		String miasto = request.getParameter("miasto");
 		String srodki = request.getParameter("srodki");
 		
+		OracleKontoDAO okd = new OracleKontoDAO();
+		MongoKlientDAO mkd = new MongoKlientDAO();
+		
+		//mkd.pobierzKlienta(pesel);
+		
+		//okd.wplacPieniedze(, srodki);
+		
 		response.setContentType("text/html");
  
-		PrintWriter writer = response.getWriter();		
+		PrintWriter writer = response.getWriter();
 	}
 }
