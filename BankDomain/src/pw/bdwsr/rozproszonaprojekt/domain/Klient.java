@@ -12,6 +12,17 @@ public class Klient {
 	private String numerDowoduOsobistego;
 	private String numerPaszportu;
 
+	public Klient(){
+		pesel = "";
+		imie = "";
+		nazwisko = "";
+		ulicaZamieszkania = "";
+		numerDomu = "";
+		numerMieszkania = "";
+		numerTelefonu = "";
+		numerDowoduOsobistego = "";
+		numerPaszportu = "";
+	}
 	
 	/*---SETTERY---*/
 	
