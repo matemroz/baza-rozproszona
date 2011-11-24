@@ -11,7 +11,6 @@
     <form action="accountOperationServlet" method="POST">
         Imię: <input type="text" name="imie" size="20"><br>
         Środki: <input type="text" name="srodki" size="20"><br>
-        Miasto: <input type="text" name="miasto" size="20"><br>
         <br><br>
         <input type="submit" value="Wpłać">
     </form>
