@@ -2,6 +2,8 @@ package pw.bdwsr.rozproszonaprojekt.webapp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
+import pw.bdwsr.rozproszonaprojekt.domain.Klient;
 
 /**
  * Servlet implementation class AccountOperationServlet
@@ -31,15 +34,18 @@ public class AccountOperationServlet extends HttpServlet {
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String imie = request.getParameter("imie");
-		String miasto = request.getParameter("miasto");
 		String srodki = request.getParameter("srodki");
 		
 		OracleKontoDAO okd = new OracleKontoDAO();
 		MongoKlientDAO mkd = new MongoKlientDAO();
+
+		List<Klient> listaKlientow = mkd.pobierzKlientowNaPodstawieKryterium(imie);
+		Iterator it = listaKlientow.iterator();
 		
-		//mkd.pobierzKlienta(pesel);
-		
-		//okd.wplacPieniedze(, srodki);
+		while(it.hasNext()){
+			Klient klient = (Klient)it.next();
+			
+		}
 		
 		response.setContentType("text/html");
  
