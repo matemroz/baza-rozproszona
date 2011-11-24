@@ -144,6 +144,14 @@ public class MongoKlientDAO implements KlientDAO{
 		return MongoDBUtils.insertCommand(KOLEKCJAKLIENTA, columns, values);
 	}
 
+	@Override
+	public List<Klient> pobierzKlientowNaPodstawieKryterium(String kryterium) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
 //	public static void main(String[] args){
 //		MongoKlientDAO mkdao = new MongoKlientDAO();
 //		

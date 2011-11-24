@@ -36,7 +36,7 @@ public class OracleDAOFactory extends DAOFactory {
 		return new OracleKontoDAO();
 	}
 
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		OracleKontoDAO okd = new OracleKontoDAO();
 		OracleRodzajKontaDAO orkd = new OracleRodzajKontaDAO();
 		Konto k = new Konto();
@@ -51,5 +51,5 @@ public class OracleDAOFactory extends DAOFactory {
 		System.out.println(rkTst.getIdRodzajuKonta() + ":" + rkTst.getKapitalizacja() + ":"
 				+ rkTst.getNazwa() + ":" + rkTst.getOprocentowanie() + ":" + rkTst.getWaluta());
 	}
-	
+	*/
 }

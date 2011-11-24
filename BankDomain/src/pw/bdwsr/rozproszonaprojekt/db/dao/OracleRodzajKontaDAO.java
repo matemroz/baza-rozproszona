@@ -17,7 +17,7 @@ public class OracleRodzajKontaDAO implements RodzajKontaDAO {
 	 */
 	@Override
 	public RodzajKonta getDaneRodzajuKonta(int idRodzajuKonta) {
-		RodzajKonta rk = new RodzajKonta(idRodzajuKonta);
+		RodzajKonta rk = new RodzajKonta();
 		String columnNames = "OPROCENTOWANIE, KAPITALIZACJA, WALUTA, NAZWA";
 		String condition = "IDRODZAJUKONTA = '" + idRodzajuKonta + "'";
 		String tableName = "RODZAJKONTA";
@@ -31,7 +31,7 @@ public class OracleRodzajKontaDAO implements RodzajKontaDAO {
 			while (rs.next()) {
 				rk.setOprocentowanie(Double.parseDouble(rs
 						.getString("OPROCENTOWANIE")));
-				rk.setKapitalizacja(Double.parseDouble(rs
+				rk.setKapitalizacja(Integer.parseInt(rs
 						.getString("KAPITALIZACJA")));
 				rk.setWaluta(rs.getString("WALUTA"));
 				rk.setNazwa(rs.getString("NAZWA"));

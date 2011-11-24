@@ -21,7 +21,7 @@ public class OracleKontoDAO implements KontoDAO {
 	 * @return obiekt Konto lub null jeśli konto o podanym numerze nie występuje
 	 */
 	@Override
-	public Konto getKontoInfo(int nrKonta) {
+	public Konto getKontoInfo(String nrKonta) {
 		Konto k = new Konto();
 		String columnNames = "NRKONTA, IDRODZAJUKONTA, SRODKI";
 		String condition = "NRKONTA = '" + nrKonta + "'";
@@ -35,8 +35,7 @@ public class OracleKontoDAO implements KontoDAO {
 		try {
 			while (rs.next()) {
 				k.setNrKonta(rs.getString("NRKONTA"));
-				k.setRodzajKonta(new RodzajKonta(Integer.parseInt(rs
-						.getString("IDRODZAJUKONTA"))));
+				k.setIdRodzajuKonta(Integer.parseInt(rs.getString("IDRODZAJUKONTA")));
 				k.setSrodki(Double.parseDouble(rs.getString("SRODKI")));
 			}
 		} catch (SQLException ex) {
@@ -65,7 +64,7 @@ public class OracleKontoDAO implements KontoDAO {
 		columnNames.add("PESEL");
 
 		values.add("'" + konto.getNrKonta() + "'");
-		values.add("'" + konto.getRodzajKonta().getIdRodzajuKonta() + "'");
+		values.add("'" + konto.getIdRodzajuKonta() + "'");
 		values.add("'" + konto.getSrodki() + "'");
 		values.add("'" + konto.getPesel() + "'");
 

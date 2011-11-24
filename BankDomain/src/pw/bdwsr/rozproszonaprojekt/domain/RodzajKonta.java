@@ -3,13 +3,11 @@ package pw.bdwsr.rozproszonaprojekt.domain;
 public class RodzajKonta {
 	protected int idRodzajuKonta;
 	protected double oprocentowanie;
-	protected double kapitalizacja;
+	protected int kapitalizacja;
 	protected String waluta;
 	protected String nazwa;
 
-	public RodzajKonta(int idRodzajuKonta){
-		this.idRodzajuKonta = idRodzajuKonta;
-	}
+	public RodzajKonta(){ }
 	
 	public int getIdRodzajuKonta(){
 		return idRodzajuKonta;
@@ -23,11 +21,11 @@ public class RodzajKonta {
 		this.oprocentowanie = oprocentowanie;
 	}
 
-	public double getKapitalizacja() {
+	public int getKapitalizacja() {
 		return kapitalizacja;
 	}
 
-	public void setKapitalizacja(double kapitalizacja) {
+	public void setKapitalizacja(int kapitalizacja) {
 		this.kapitalizacja = kapitalizacja;
 	}
 
