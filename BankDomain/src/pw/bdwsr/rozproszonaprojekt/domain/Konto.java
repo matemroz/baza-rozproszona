@@ -3,7 +3,7 @@ package pw.bdwsr.rozproszonaprojekt.domain;
 public class Konto {
 	protected String nrKonta;
 	protected double srodki;
-	protected RodzajKonta rodzajKonta;
+	protected int idRodzajuKonta;
 	protected String pesel;
 
 	public String getNrKonta() {
@@ -22,12 +22,12 @@ public class Konto {
 		this.srodki = srodki;
 	}
 
-	public RodzajKonta getRodzajKonta() {
-		return rodzajKonta;
+	public int getIdRodzajuKonta() {
+		return idRodzajuKonta;
 	}
 
-	public void setRodzajKonta(RodzajKonta rodzajKonta) {
-		this.rodzajKonta = rodzajKonta;
+	public void setIdRodzajuKonta(int idRodzajuKonta) {
+		this.idRodzajuKonta = idRodzajuKonta;
 	}
 	
 	public String getPesel(){

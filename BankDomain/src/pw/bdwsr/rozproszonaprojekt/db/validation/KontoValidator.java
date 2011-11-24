@@ -12,7 +12,7 @@ public class KontoValidator {
 		return true;
 	}
 	
-	public static boolean validateRodzajKonta(RodzajKonta rodzajKonta){
+	public static boolean validateIdRodzajuKonta(String rodzajKonta){
 		return true;
 	}
 	
