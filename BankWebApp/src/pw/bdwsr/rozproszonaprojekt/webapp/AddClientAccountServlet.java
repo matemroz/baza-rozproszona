@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
+import pw.bdwsr.rozproszonaprojekt.db.validation.KlientValidator;
+import pw.bdwsr.rozproszonaprojekt.db.validation.KontoValidator;
 import pw.bdwsr.rozproszonaprojekt.domain.Klient;
 import pw.bdwsr.rozproszonaprojekt.domain.Konto;
 import pw.bdwsr.rozproszonaprojekt.domain.RodzajKonta;
@@ -47,27 +49,57 @@ public class AddClientAccountServlet extends HttpServlet {
 		RodzajKonta rk = new RodzajKonta(Integer.parseInt(rodzajKonta));
 		Klient klient = new Klient();
 		
-		klient.setImie(imie);
-		klient.setNazwisko(nazwisko);
-		klient.setNumerDomu(nrDomu);
-		klient.setUlicaZamiekszania(ulicaZamieszkania);
-		klient.setNumerMieszkania(nrMieszkania);
-		klient.setNumerTelefonu(nrTelefonu);
-		klient.setNumerDowoduOsobistego(nrDowoduOsobistego);
-		klient.setNumerPaszportu(nrPaszportu);
+		if(KlientValidator.validateImie(imie))
+			klient.setImie(imie);
 		
-		konto.setSrodki(Double.parseDouble(srodkiInicjalne));
-		konto.setRodzajKonta(rk);
+		if(KlientValidator.validateNazwisko(nazwisko))
+			klient.setNazwisko(nazwisko);
+		
+		if(KlientValidator.validateNumerDomu(nrDomu))
+			klient.setNumerDomu(nrDomu);
+		
+		if(KlientValidator.validateUlicaZamieszkania(ulicaZamieszkania))
+			klient.setUlicaZamiekszania(ulicaZamieszkania);
+		
+		if(KlientValidator.validateNumerMieszkania(nrMieszkania))
+			klient.setNumerMieszkania(nrMieszkania);
+		
+		if(KlientValidator.validateNumerTelefonu(nrTelefonu))
+			klient.setNumerTelefonu(nrTelefonu);
+		
+		if(KlientValidator.validateNumerDowoduOsobistego(nrDowoduOsobistego))
+			klient.setNumerDowoduOsobistego(nrDowoduOsobistego);
+		
+		if(KlientValidator.validateNumerPaszportu(nrPaszportu))
+			klient.setNumerPaszportu(nrPaszportu);
+		
+		if(KontoValidator.validateSrodki(Double.parseDouble(srodkiInicjalne)))
+			konto.setSrodki(Double.parseDouble(srodkiInicjalne));
+		
+		if(KontoValidator.validateRodzajKonta(rk))
+			konto.setRodzajKonta(rk);
 		
 		MongoKlientDAO mkd = new MongoKlientDAO();
 		OracleKontoDAO okd = new OracleKontoDAO();
 		
-		mkd.dodajKlienta(klient);
-		okd.addKonto(konto);
-		
-		response.setContentType("text/html");
-		
-		PrintWriter writer = response.getWriter();		
+		if(mkd != null && okd != null){
+			response.setContentType("text/html");
+			PrintWriter writer = response.getWriter();
+			if(mkd.dodajKlienta(klient) && okd.addKonto(konto))
+				printSuccessAddProfilKlienta(response, writer);
+			else
+				printFailureAddProfilKlienta(response, writer);
+		}
 	}
 
+	private void printSuccessAddProfilKlienta(HttpServletResponse response, 
+			PrintWriter writer) throws IOException{
+		writer.write("Dodanie nowego profilu klienta przebieg³o pomyœlnie!");
+	}
+	
+	private void printFailureAddProfilKlienta(HttpServletResponse response, 
+			PrintWriter writer) throws IOException{
+		writer.write("Dodanie nowego proflilu klienta przebieg³o niepoprawnie.");
+	}
+	
 }
