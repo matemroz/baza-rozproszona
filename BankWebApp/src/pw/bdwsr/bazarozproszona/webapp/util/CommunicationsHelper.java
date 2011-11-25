@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 public class CommunicationsHelper {
 	public static void writeErrorCommunicate(PrintWriter writer, String errorCommunicate){
-		writer.write("<font color = \"red\"><h3>" + errorCommunicate + "</h3></font>");
+		writer.write("<h3>Error: <font color = \"red\">" + errorCommunicate + "</font></h3>");
 	}
 	
 	public static void writeSuccessCommunicate(PrintWriter writer, String successCommunicate){
