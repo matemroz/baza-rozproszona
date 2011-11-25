@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pw.bdwsr.bazarozproszona.webapp.util.CommunicationsHelper;
+import pw.bdwsr.bazarozproszona.webapp.util.ErrorCommunications;
+import pw.bdwsr.bazarozproszona.webapp.util.SuccessCommunications;
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
 import pw.bdwsr.rozproszonaprojekt.db.validation.KlientValidator;
@@ -26,13 +29,16 @@ public class AddClientAccountServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 3069725355821798452L;
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/AddClientAccountForm.jsp");
 		rd.forward(req, resp);
 	}
  
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
 		String imie = request.getParameter("imie");
 		String nazwisko = request.getParameter("nazwisko");
 		String ulicaZamieszkania = request.getParameter("ulicaZamieszkania");
@@ -47,57 +53,47 @@ public class AddClientAccountServlet extends HttpServlet {
 		Konto konto = new Konto();
 		Klient klient = new Klient();
 		
-		if(KlientValidator.validateImie(imie))
-			klient.setImie(imie);
-		
-		if(KlientValidator.validateNazwisko(nazwisko))
-			klient.setNazwisko(nazwisko);
-		
-		if(KlientValidator.validateNumerDomu(nrDomu))
-			klient.setNumerDomu(nrDomu);
-		
-		if(KlientValidator.validateUlicaZamieszkania(ulicaZamieszkania))
-			klient.setUlicaZamiekszania(ulicaZamieszkania);
-		
-		if(KlientValidator.validateNumerMieszkania(nrMieszkania))
-			klient.setNumerMieszkania(nrMieszkania);
-		
-		if(KlientValidator.validateNumerTelefonu(nrTelefonu))
-			klient.setNumerTelefonu(nrTelefonu);
-		
-		if(KlientValidator.validateNumerDowoduOsobistego(nrDowoduOsobistego))
-			klient.setNumerDowoduOsobistego(nrDowoduOsobistego);
-		
-		if(KlientValidator.validateNumerPaszportu(nrPaszportu))
-			klient.setNumerPaszportu(nrPaszportu);
-		
-		if(KontoValidator.validateSrodki(Double.parseDouble(srodkiInicjalne)))
-			konto.setSrodki(Double.parseDouble(srodkiInicjalne));
-		
-		if(KontoValidator.validateIdRodzajuKonta(idRodzajuKonta))
-			konto.setIdRodzajuKonta(Integer.parseInt(idRodzajuKonta));
-		
 		MongoKlientDAO mkd = new MongoKlientDAO();
 		OracleKontoDAO okd = new OracleKontoDAO();
 		
-		if(mkd != null && okd != null){
-			response.setContentType("text/html");
-			PrintWriter writer = response.getWriter();
+		response.setContentType("text/html");
+		
+		PrintWriter writer = response.getWriter();
+		
+		if(KlientValidator.validateImie(imie) 
+				&& KlientValidator.validateNazwisko(nazwisko)
+				&& KlientValidator.validateNumerDomu(nrDomu) 
+				&& KlientValidator.validateUlicaZamieszkania(ulicaZamieszkania)
+				&& KlientValidator.validateNumerMieszkania(nrMieszkania) 
+				&& KlientValidator.validateNumerTelefonu(nrTelefonu)
+				&& KlientValidator.validateNumerDowoduOsobistego(nrDowoduOsobistego)
+				&& KlientValidator.validateNumerPaszportu(nrPaszportu)
+				&& KontoValidator.validateSrodki(Double.parseDouble(srodkiInicjalne))
+				&& KontoValidator.validateIdRodzajuKonta(idRodzajuKonta)
+				&& mkd != null && okd != null
+				&& klient != null && konto != null){
+			
+			klient.setImie(imie);
+			klient.setNazwisko(nazwisko);
+			klient.setNumerDomu(nrDomu);
+			klient.setUlicaZamiekszania(ulicaZamieszkania);
+			klient.setNumerMieszkania(nrMieszkania);
+			klient.setNumerTelefonu(nrTelefonu);
+			klient.setNumerDowoduOsobistego(nrDowoduOsobistego);
+			klient.setNumerPaszportu(nrPaszportu);
+			konto.setSrodki(Double.parseDouble(srodkiInicjalne));
+			konto.setIdRodzajuKonta(Integer.parseInt(idRodzajuKonta));
+			
 			if(mkd.dodajKlienta(klient) && okd.addKonto(konto))
-				printSuccessAddProfilKlienta(response, writer);
+				CommunicationsHelper.writeErrorCommunicate(writer,
+						SuccessCommunications.POWODZENIE_DODANIE_PROFILU_KLIENTA);
 			else
-				printFailureAddProfilKlienta(response, writer);
+				CommunicationsHelper.writeErrorCommunicate(writer,
+						ErrorCommunications.BLAD_DODAWANIA_NOWEGO_PROFILU_KLIENTA);
+		}
+		else{
+			CommunicationsHelper.writeErrorCommunicate(writer,
+					ErrorCommunications.NIEPOPRAWNE_DANE_FORMULARZA_DODAWANIA_KLIENTA);
 		}
 	}
-
-	private void printSuccessAddProfilKlienta(HttpServletResponse response, 
-			PrintWriter writer) throws IOException{
-		writer.write("Dodanie nowego profilu klienta przebieg�o pomy�lnie!");
-	}
-	
-	private void printFailureAddProfilKlienta(HttpServletResponse response, 
-			PrintWriter writer) throws IOException{
-		writer.write("Dodanie nowego proflilu klienta przebieg�o niepoprawnie.");
-	}
-	
 }
