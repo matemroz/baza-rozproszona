@@ -34,8 +34,7 @@ public class SearchClientProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
-		RequestDispatcher rd = sc
-				.getRequestDispatcher("/WEB-INF/SearchClientProfileForm.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/SearchClientProfileForm.jsp");
 		rd.forward(req, resp);
 	}
 

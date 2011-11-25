@@ -42,19 +42,20 @@ public class AccountOperationServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		Double srodki = Double.parseDouble(request.getParameter("srodki"));
+		String imie = request.getParameter("imie");
 		
 		OracleKontoDAO okd = new OracleKontoDAO();
 		MongoKlientDAO mkd = new MongoKlientDAO();
 
 		Klient klientKryterium = new Klient();
-		klientKryterium.setImie("Anna");
 		
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
 		
 		if (klientKryterium != null && KlientValidator.validateImie(klientKryterium.getImie()) 
-				&& KontoValidator.validateSrodki(srodki)){
-			if(mkd != null && okd != null) {
+				&& KontoValidator.validateSrodki(srodki) && KlientValidator.validateImie(imie) 
+				&& mkd != null && okd != null) {
+				klientKryterium.setImie(imie);
 				List<Klient> listaKlientow = mkd.pobierzKlientowNaPodstawieKryterium(klientKryterium);
 				if(listaKlientow != null){
 					Iterator<Klient> it = listaKlientow.iterator();
@@ -85,8 +86,6 @@ public class AccountOperationServlet extends HttpServlet {
 				CommunicationsHelper.writeErrorCommunicate(writer, 
 						ErrorCommunications.BLAD_TWORZENIE_OBIEKTKOW_DAO);
 			}
-		}
-	
 	}
 	
 }

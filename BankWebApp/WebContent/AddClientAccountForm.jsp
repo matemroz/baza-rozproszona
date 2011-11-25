@@ -18,6 +18,7 @@
         Nr telefonu: <input type="text" name="nrTelefonu" size="20"><br>
         Nr dowodou osobistego: <input type="text" name="nrDowoduOsobistego" size="20"><br>
         Nr paszportu: <input type="text" name="nrPaszportu" size="20"><br>
+        Pesel: <input type="text" name="pesel" size="20"><br>
         <br>
         <h3>Dane konta</h3>
         Środki inicjalne: <input type="text" name="srodkiInicjalne" size="20"><br>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pw.bdwsr.bazarozproszona.webapp.util.CommunicationsHelper;
 import pw.bdwsr.bazarozproszona.webapp.util.ErrorCommunications;
+import pw.bdwsr.bazarozproszona.webapp.util.KontoUtil;
 import pw.bdwsr.bazarozproszona.webapp.util.SuccessCommunications;
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
@@ -47,6 +48,7 @@ public class AddClientAccountServlet extends HttpServlet {
 		String nrTelefonu = request.getParameter("nrTelefonu");
 		String nrDowoduOsobistego = request.getParameter("nrDowoduOsobistego");
 		String nrPaszportu = request.getParameter("nrPaszportu");
+		String pesel = request.getParameter("pesel");
 		String srodkiInicjalne = request.getParameter("srodkiInicjalne");
 		String idRodzajuKonta = request.getParameter("rodzajKonta");
 		
@@ -68,6 +70,7 @@ public class AddClientAccountServlet extends HttpServlet {
 				&& KlientValidator.validateNumerTelefonu(nrTelefonu)
 				&& KlientValidator.validateNumerDowoduOsobistego(nrDowoduOsobistego)
 				&& KlientValidator.validateNumerPaszportu(nrPaszportu)
+				&& KlientValidator.validatePesel(pesel)
 				&& KontoValidator.validateSrodki(Double.parseDouble(srodkiInicjalne))
 				&& KontoValidator.validateIdRodzajuKonta(idRodzajuKonta)
 				&& mkd != null && okd != null
@@ -81,8 +84,11 @@ public class AddClientAccountServlet extends HttpServlet {
 			klient.setNumerTelefonu(nrTelefonu);
 			klient.setNumerDowoduOsobistego(nrDowoduOsobistego);
 			klient.setNumerPaszportu(nrPaszportu);
+			klient.setPesel(pesel);
+			konto.setNrKonta(KontoUtil.generateAccountNumber(pesel));
 			konto.setSrodki(Double.parseDouble(srodkiInicjalne));
 			konto.setIdRodzajuKonta(Integer.parseInt(idRodzajuKonta));
+			konto.setPesel(pesel);
 			
 			if(mkd.dodajKlienta(klient) && okd.addKonto(konto))
 				CommunicationsHelper.writeErrorCommunicate(writer,
@@ -90,8 +96,7 @@ public class AddClientAccountServlet extends HttpServlet {
 			else
 				CommunicationsHelper.writeErrorCommunicate(writer,
 						ErrorCommunications.BLAD_DODAWANIA_NOWEGO_PROFILU_KLIENTA);
-		}
-		else{
+		}else{
 			CommunicationsHelper.writeErrorCommunicate(writer,
 					ErrorCommunications.NIEPOPRAWNE_DANE_FORMULARZA_DODAWANIA_KLIENTA);
 		}
