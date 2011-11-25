@@ -23,7 +23,7 @@ public class OracleKontoDAO implements KontoDAO {
 	@Override
 	public Konto getKontoInfo(String nrKonta) {
 		Konto k = new Konto();
-		String columnNames = "NRKONTA, IDRODZAJUKONTA, SRODKI";
+		String columnNames = "NRKONTA, IDRODZAJUKONTA, SRODKI, PESEL";
 		String condition = "NRKONTA = '" + nrKonta + "'";
 		String tableName = "KONTO";
 		ResultSet rs = OracleDBUtils.queryCommand(tableName, columnNames,
@@ -37,6 +37,7 @@ public class OracleKontoDAO implements KontoDAO {
 				k.setNrKonta(rs.getString("NRKONTA"));
 				k.setIdRodzajuKonta(Integer.parseInt(rs.getString("IDRODZAJUKONTA")));
 				k.setSrodki(Double.parseDouble(rs.getString("SRODKI")));
+				k.setPesel(rs.getString("PESEL"));
 			}
 		} catch (SQLException ex) {
 			System.err.println("Problem z pobraniem danych konta");
@@ -81,11 +82,11 @@ public class OracleKontoDAO implements KontoDAO {
 	 * @return true jeśli operacja się powiedzie lub w przeciwnym wypadku false
 	 */
 	@Override
-	public boolean wplacPieniedze(String nrKonta, double srodki) {
+	public boolean wplacPieniedze(String pesel, double srodki) {
 		String tableName = "KONTO";
 		String columnName = "SRODKI";
 		String value = "'" + Double.toString(srodki) + "'";
-		String condition = "NRKONTA = '" + nrKonta + "'";
+		String condition = "PESEL = '" + pesel + "'";
 
 		return OracleDBUtils.updateCommand(tableName, columnName, value,
 				condition);

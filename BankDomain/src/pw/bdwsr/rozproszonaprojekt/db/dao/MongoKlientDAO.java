@@ -3,11 +3,11 @@ package pw.bdwsr.rozproszonaprojekt.db.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
-
 import pw.bdwsr.rozproszonaprojekt.db.utils.MongoDBUtils;
 import pw.bdwsr.rozproszonaprojekt.domain.Klient;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
 
 /*TODO sprawdzenie czy pesel jest juz w bazie*/
 public class MongoKlientDAO implements KlientDAO {
@@ -244,24 +244,23 @@ public class MongoKlientDAO implements KlientDAO {
 		return clientsList;
 	}
 
-//	 public static void main(String[] args){
-//	 MongoKlientDAO mkdao = new MongoKlientDAO();
-//	
-//	 //stworzenie klienta testowego
-//	 Klient k = new Klient();
-//	 k.setPesel("51021163551");
-//	 k.setImie("Anna");
-//	 k.setNazwisko("Mazurek");
-//	 k.setNumerDomu("1");
-//	 k.setNumerMieszkania("2");
-//	 k.setNumerTelefonu("0801100200300");
-//	 k.setNumerDowoduOsobistego("AIA678531");
-//	 k.setNumerPaszportu("47fdafasfsfsfs");
-//	 k.setUlicaZamiekszania("Konwiktorska");
-//	
-//	 //test dodajKlienta
-//	 System.out.println(mkdao.dodajKlienta(k));
-//	
+ public static void main(String[] args){
+ MongoKlientDAO mkdao = new MongoKlientDAO();
+	
+	 Klient k = new Klient();
+	 k.setPesel("51021163551");
+	 k.setImie("Anna");
+	 k.setNazwisko("Mazurek");
+	 k.setNumerDomu("1");
+	 k.setNumerMieszkania("2");
+	 k.setNumerTelefonu("0801100200300");
+	 k.setNumerDowoduOsobistego("AIA678531");
+	 k.setNumerPaszportu("47fdafasfsfsfs");
+	 k.setUlicaZamiekszania("Konwiktorska");
+
+	 //test dodajKlienta
+	 System.out.println(mkdao.dodajKlienta(k));
+ }	
 //	 //test zmienDaneKlienta
 //	 k.setUlicaZamiekszania("Lazienkowska");
 //	 System.out.println(mkdao.zmienDaneKlienta(k));
