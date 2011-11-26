@@ -1,6 +1,6 @@
 package pw.bdwsr.rozproszonaprojekt.db.validation;
 
-import pw.bdwsr.rozproszonaprojekt.domain.RodzajKonta;
+//import pw.bdwsr.rozproszonaprojekt.domain.RodzajKonta;
 
 public class KontoValidator {
 
