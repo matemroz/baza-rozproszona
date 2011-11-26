@@ -5,6 +5,8 @@
 	<projects>
 		<project>BankWebApp</project>
 		<project>BankDomain</project>
+		<project>BankTests</project>
+		<project>BankValidator</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
