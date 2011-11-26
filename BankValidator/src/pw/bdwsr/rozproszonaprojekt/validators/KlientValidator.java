@@ -1,8 +1,11 @@
-package pw.bdwsr.rozproszonaprojekt.db.validation;
+package pw.bdwsr.rozproszonaprojekt.validators;
 
 public class KlientValidator {
 
 	public static boolean validatePesel(String pesel) {
+		if (pesel == null) {
+			return false;
+		}
 		if (pesel.length() == 11) {
 			try {
 				Long.parseLong(pesel);
@@ -15,6 +18,9 @@ public class KlientValidator {
 	}
 
 	public static boolean validateImie(String imie) {
+		if (imie == null) {
+			return false;
+		}
 		if (imie.length() <= 0)
 			return false;
 
@@ -32,6 +38,9 @@ public class KlientValidator {
 	 */
 
 	public static boolean validateNazwisko(String nazwisko) {
+		if (nazwisko == null) {
+			return false;
+		}
 		if (nazwisko.length() <= 0)
 			return false;
 
@@ -42,6 +51,9 @@ public class KlientValidator {
 	}
 
 	public static boolean validateUlicaZamieszkania(String ulicaZamieszkania) {
+		if (ulicaZamieszkania == null) {
+			return false;
+		}
 		if (ulicaZamieszkania.length() <= 0)
 			return false;
 
@@ -52,6 +64,9 @@ public class KlientValidator {
 	}
 
 	public static boolean validateNumerDomu(String numerDomu) {
+		if (numerDomu == null) {
+			return false;
+		}
 		if (numerDomu.length() <= 0)
 			return false;
 		try {
@@ -63,6 +78,9 @@ public class KlientValidator {
 	}
 
 	public static boolean validateNumerMieszkania(String numerMieszkania) {
+		if (numerMieszkania == null) {
+			return false;
+		}
 		if (numerMieszkania.length() <= 0)
 			return false;
 
@@ -78,6 +96,9 @@ public class KlientValidator {
 	 * @return
 	 */
 	public static boolean validateNumerTelefonu(String numerTelefonu) {
+		if (numerTelefonu == null) {
+			return false;
+		}
 		if ((numerTelefonu.length() != 9) && (numerTelefonu.length() != 10))
 			return false;
 
@@ -88,6 +109,9 @@ public class KlientValidator {
 
 	public static boolean validateNumerDowoduOsobistego(
 			String numerDowoduOsobistego) {
+		if (numerDowoduOsobistego == null) {
+			return false;
+		}
 		if (numerDowoduOsobistego.length() != 9)
 			return false;
 
@@ -97,6 +121,9 @@ public class KlientValidator {
 	}
 
 	public static boolean validateNumerPaszportu(String numerPaszportu) {
+		if (numerPaszportu == null) {
+			return false;
+		}
 		if (numerPaszportu.length() != 9)
 			return false;
 
