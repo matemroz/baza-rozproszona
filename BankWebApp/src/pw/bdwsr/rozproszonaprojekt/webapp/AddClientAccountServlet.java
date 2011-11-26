@@ -51,7 +51,7 @@ public class AddClientAccountServlet extends HttpServlet {
 		String pesel = request.getParameter("pesel");
 		String srodkiInicjalne = request.getParameter("srodkiInicjalne");
 		String idRodzajuKonta = request.getParameter("rodzajKonta");
-		System.err.println("1");
+
 		Konto konto = new Konto();
 		Klient klient = new Klient();
 		
