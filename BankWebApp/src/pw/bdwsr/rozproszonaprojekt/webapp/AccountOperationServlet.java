@@ -17,8 +17,8 @@ import pw.bdwsr.bazarozproszona.webapp.util.ErrorCommunications;
 import pw.bdwsr.bazarozproszona.webapp.util.SuccessCommunications;
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
-import pw.bdwsr.rozproszonaprojekt.db.validation.KlientValidator;
-import pw.bdwsr.rozproszonaprojekt.db.validation.KontoValidator;
+import pw.bdwsr.rozproszonaprojekt.validators.KlientValidator;
+import pw.bdwsr.rozproszonaprojekt.validators.KontoValidator;
 import pw.bdwsr.rozproszonaprojekt.domain.Klient;
 
 /**
@@ -41,7 +41,8 @@ public class AccountOperationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		Double srodki = Double.parseDouble(request.getParameter("srodki"));
+		//Double srodki = Double.parseDouble(request.getParameter("srodki"));
+		String srodkiString = request.getParameter("srodki");
 		String imie = request.getParameter("imie");
 		
 		OracleKontoDAO okd = new OracleKontoDAO();
