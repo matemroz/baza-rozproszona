@@ -1,4 +1,4 @@
-package pw.bdwsr.rozproszonaprojekt.db.TESTS;
+package pw.bdwsr.rozproszonaprojekt.db.tests;
 
 import static org.junit.Assert.*;
 
