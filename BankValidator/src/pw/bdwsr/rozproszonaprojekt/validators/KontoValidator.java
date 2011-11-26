@@ -1,4 +1,4 @@
-package pw.bdwsr.rozproszonaprojekt.db.validation;
+package pw.bdwsr.rozproszonaprojekt.validators;
 
 //import pw.bdwsr.rozproszonaprojekt.domain.RodzajKonta;
 
@@ -13,8 +13,12 @@ public class KontoValidator {
 		return true;
 	}
 
-	public static boolean validateSrodki(double srodki) {
-		if (srodki >= 0)
+	public static boolean validateSrodki(String srodki) {
+		if (srodki.isEmpty() || srodki == null) {
+			return false;
+		}
+		Double dSrodki = Double.parseDouble(srodki);
+		if (dSrodki >= 0)
 			return true;
 		return false;
 	}
