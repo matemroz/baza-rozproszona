@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="/BankDomain/lib/ojdbc14_g.jar"/>
 	<classpathentry kind="lib" path="/BankDomain/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="/BankDomain/lib/orai18n.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BankValidator"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

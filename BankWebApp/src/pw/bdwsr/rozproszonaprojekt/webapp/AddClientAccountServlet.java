@@ -16,8 +16,8 @@ import pw.bdwsr.bazarozproszona.webapp.util.KontoUtil;
 import pw.bdwsr.bazarozproszona.webapp.util.SuccessCommunications;
 import pw.bdwsr.rozproszonaprojekt.db.dao.MongoKlientDAO;
 import pw.bdwsr.rozproszonaprojekt.db.dao.OracleKontoDAO;
-import pw.bdwsr.rozproszonaprojekt.db.validation.KlientValidator;
-import pw.bdwsr.rozproszonaprojekt.db.validation.KontoValidator;
+import pw.bdwsr.rozproszonaprojekt.validators.KlientValidator;
+import pw.bdwsr.rozproszonaprojekt.validators.KontoValidator;
 import pw.bdwsr.rozproszonaprojekt.domain.Klient;
 import pw.bdwsr.rozproszonaprojekt.domain.Konto;
 
@@ -51,7 +51,7 @@ public class AddClientAccountServlet extends HttpServlet {
 		String pesel = request.getParameter("pesel");
 		String srodkiInicjalne = request.getParameter("srodkiInicjalne");
 		String idRodzajuKonta = request.getParameter("rodzajKonta");
-		
+		System.err.println("1");
 		Konto konto = new Konto();
 		Klient klient = new Klient();
 		
@@ -71,7 +71,7 @@ public class AddClientAccountServlet extends HttpServlet {
 				&& KlientValidator.validateNumerDowoduOsobistego(nrDowoduOsobistego)
 				&& KlientValidator.validateNumerPaszportu(nrPaszportu)
 				&& KlientValidator.validatePesel(pesel)
-				&& KontoValidator.validateSrodki(Double.parseDouble(srodkiInicjalne))
+				&& KontoValidator.validateSrodki(srodkiInicjalne)
 				&& KontoValidator.validateIdRodzajuKonta(idRodzajuKonta)
 				&& mkd != null && okd != null
 				&& klient != null && konto != null){
@@ -91,7 +91,7 @@ public class AddClientAccountServlet extends HttpServlet {
 			konto.setPesel(pesel);
 			
 			if(mkd.dodajKlienta(klient) && okd.addKonto(konto))
-				CommunicationsHelper.writeErrorCommunicate(writer,
+				CommunicationsHelper.writeSuccessCommunicate(writer,
 						SuccessCommunications.POWODZENIE_DODANIE_PROFILU_KLIENTA);
 			else
 				CommunicationsHelper.writeErrorCommunicate(writer,
