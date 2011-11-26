@@ -42,7 +42,8 @@ public class AccountOperationServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//Double srodki = Double.parseDouble(request.getParameter("srodki"));
-		String srodkiString = request.getParameter("srodki");
+		String srodki = request.getParameter("srodki");
+		
 		String imie = request.getParameter("imie");
 		
 		OracleKontoDAO okd = new OracleKontoDAO();
@@ -56,6 +57,7 @@ public class AccountOperationServlet extends HttpServlet {
 		if (klientKryterium != null && KlientValidator.validateImie(klientKryterium.getImie()) 
 				&& KontoValidator.validateSrodki(srodki) && KlientValidator.validateImie(imie) 
 				&& mkd != null && okd != null) {
+				
 				klientKryterium.setImie(imie);
 				List<Klient> listaKlientow = mkd.pobierzKlientowNaPodstawieKryterium(klientKryterium);
 				if(listaKlientow != null){
@@ -65,7 +67,7 @@ public class AccountOperationServlet extends HttpServlet {
 						if (klient != null) {
 							String pesel = klient.getPesel();
 							if(KlientValidator.validatePesel(pesel)){
-								if(okd.wplacPieniedze(pesel, srodki))
+								if(okd.wplacPieniedze(pesel, Double.parseDouble(srodki)))
 									CommunicationsHelper.writeSuccessCommunicate(writer, 
 										SuccessCommunications.POWODZENIE_DODANIA_PIENIEDZY_KLIENTOM);
 								else
