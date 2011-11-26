@@ -36,20 +36,20 @@ public class OracleDAOFactory extends DAOFactory {
 		return new OracleKontoDAO();
 	}
 
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		OracleKontoDAO okd = new OracleKontoDAO();
 		OracleRodzajKontaDAO orkd = new OracleRodzajKontaDAO();
 		Konto k = new Konto();
-		k.setNrKonta("1111-2121-1232-1231-1231-1231");
-		k.setRodzajKonta(new RodzajKonta(1));
+		k.setNrKonta("1111-2121-1232-1231-1231-8173");
+		k.setIdRodzajuKonta(1);
 		k.setSrodki(4.0);
 		k.setPesel("89120500517");
 		okd.addKonto(k);
 		okd.wplacPieniedze("1111-2121-1232-1231-1231-1231", 3000.00);
-		okd.getKontoInfo(111);
+		okd.getKontoInfo("111");
 		RodzajKonta rkTst = orkd.getDaneRodzajuKonta(1);
 		System.out.println(rkTst.getIdRodzajuKonta() + ":" + rkTst.getKapitalizacja() + ":"
 				+ rkTst.getNazwa() + ":" + rkTst.getOprocentowanie() + ":" + rkTst.getWaluta());
 	}
-	*/
+	
 }
