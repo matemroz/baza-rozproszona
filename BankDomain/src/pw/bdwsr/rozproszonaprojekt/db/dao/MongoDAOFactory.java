@@ -34,9 +34,9 @@ public class MongoDAOFactory extends DAOFactory{
 		return db;
 	}
 	
-//	public static void main(String[] args){
-//		DB db = new MongoDAOFactory().createConnection();
-//		System.out.println(db.getCollectionNames().toString());
-//	}
+	public static void main(String[] args){
+		DB db = new MongoDAOFactory().createConnection();
+		System.out.println(db.getCollectionNames().toString());
+	}
 
 }
