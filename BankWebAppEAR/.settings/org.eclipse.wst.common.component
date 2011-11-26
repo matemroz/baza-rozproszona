@@ -9,5 +9,27 @@
         <dependent-module archiveName="BankDomain.jar" deploy-path="/lib" handle="module:/resource/BankDomain/BankDomain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="BankTests.jar" deploy-path="/lib" handle="module:/resource/BankTests/BankTests">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BankValidator.jar" deploy-path="/lib" handle="module:/resource/BankValidator/BankValidator">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.servlet-api-3.0.1.jar" deploy-path="/lib" handle="module:/classpath/lib/BankWebApp/lib/javax.servlet-api-3.0.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ojdbc14_g.jar" deploy-path="/lib" handle="module:/classpath/lib/BankWebApp/lib/ojdbc14_g.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mongo-2.7.2.jar" deploy-path="/lib" handle="module:/classpath/lib/BankWebApp/lib/mongo-2.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ojdbc14.jar" deploy-path="/lib" handle="module:/classpath/lib/BankWebApp/lib/ojdbc14.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="orai18n.jar" deploy-path="/" handle="module:/classpath/lib/BankWebApp/lib/orai18n.jar">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
